@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Take";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>5 Cuốn sách mới nhất</h2>
+@*<ul>
+    @foreach (var latestBooks in Model)
+    {
+        <li>
+            <a href="@Url.Action("Details", "BookStore", new { id = latestBooks.Masach })">
+                <img alt="@latestBooks.Tensach" src="~/images/@latestBooks.Anhbia" />
+                <span>@latestBooks.Tensach</span>
+            </a>
+        </li>
+    }
+</ul>*@
+<div class="row">
+    @foreach (var latestBooks in Model)
+    {
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <a href="@Url.Action("Details", "BookStore", new { id = latestBooks.Masach })">
+                    <img alt="@latestBooks.Tensach" src="~/images/@latestBooks.Anhbia" width="200" />
+                </a>
+                <div>
+                    <br />
+                    <h4 style="text-align:center">
+                        @latestBooks.Tensach
+                    </h4>
+                    <p></p>
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">15 reviews</p>
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
