@@ -26,10 +26,6 @@
         }
 </style>
 
-@{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_LayoutUser.cshtml";
-}
 
 <h3> THÔNG TIN CHI TIẾT SÁCH </h3>
 
@@ -39,11 +35,12 @@
     </div>
     <div style="width: 60%; float: left; padding: 10px">
         <h4 style="font-weight: bold; color: red">Tên sách: @Model.Tensach </h4>
+        <h4 style="font-weight: bold; color: red">Mã sách: @Model.Masach </h4>
         <p style="text-align: justify"><span style="font-weight: bold"> Mô tả: </span>@Model.Mota </p>
         <p style="font-weight: bold"> Giá bán: <span style="color: red; font-size: 16pt"> @Model.Giaban VNĐ </span></p>
     </div>
     <div id="Datmua">
-        <a href="@Url.Action("AddToCard", "ShoppingCard", new { id = @Model.Masach })" class="list-group-item">ĐẶT MUA</a>
-    </div>
+        <a href="@Url.Action("ThemGiohang", "GioHang", new { id = 1,iMasach =  @Model.Masach, @strURL = Request.Url.ToString() })" class="list-group-item">ĐẶT MUA</a>
+    </div>  
 </div>
 

@@ -7,35 +7,24 @@
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
-<h2>SPTheoChude</h2>
-
 
 <h3 style="Text-align:Center; color:red"> SÁCH THEO CHỦ ĐỀ </h3>
+
 <div class="row">
     @foreach (var sach in Model)
     {
-        <div class="col-sm-4 col-lg-4 col-md-4">
-            <div class="thumbnail">
-                <a href="@Url.Action("Details", "BookStore", new { id = sach.Masach })">
+        <div class="product_box margin_r40">
+            <div class="image_wrapper">
+                <a href="@Url.Action("Details", "BookStore", new { id = sach.Masach })" target="_parent">
                     <img alt="@sach.Tensach" src="~/images/@sach.Anhbia" width="200" />
                 </a>
-                <div>
-                    <br />
-                    <h4 style="text-align:center">
-                        @sach.Tensach
-                    </h4>
-                </div>
-                <div class="ratings">
-                    <p class="pull-right">15 reviews</p>
-                    <p>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                    </p>
-                </div>
             </div>
+            <h3>@sach.Tensach</h3>
+            <p class="price">Viewer: 15</p>
         </div>
+        
+
+
     }
 </div>
+ 

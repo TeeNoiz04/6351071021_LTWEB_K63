@@ -45,12 +45,23 @@
         <div id="templatemo_menu">
 
             <ul>
-                <li><a href="#" class="current">Home</a></li>
-                <li><a href="http://www.templatemo.com/page/1" target="_parent">CSS</a></li>
-                <li><a href="http://www.flashmo.com/page/1" target="_parent">Flash</a></li>
-                <li><a href="http://www.koflash.com" target="_parent">Gallery</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="@Url.Action("Index", "Bookstore")" class="current">Home</a></li>
+
+                <li>
+                    <a href="@Url.Action("DangKy", "NguoiDung")" target="_parent">Đăng ký</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("DangNhap", "NguoiDung")" target="_parent">Đăng nhập</a>
+                </li>
+                <li>
+                   
+                    <a href="@Url.Action("GioHang", "GioHang")" target="_parent">Giỏ hàng</a>
+
+                </li>
+                <li>
+                    @Html.Action("GiohangPartial", "GioHang")
+                </li>
+
             </ul>
 
         </div> <!-- end of templatemo_menu -->
@@ -64,9 +75,9 @@
             <div id="site_title">
 
                 <h1>
-                    <a href="http://www.templatemo.com" target="_parent">
-                        <img src="('../images/templatemo_logo.png" alt="Site Title" />
-                        <span>free css template</span>
+                    <a href="#" target="_parent">
+                        <img src="../images/templatemo_logo.png" alt="Site Title" />
+                       
                     </a>
                 </h1>
 
@@ -143,59 +154,37 @@
     </div> <!-- end of templatemo_slider_wrapper -->
 
     <div id="templatemo_content_wrapper">
-
         <div id="templatmeo_sidebar">
-
-
             <div class="sidebar_section">
                 <h2>Search Any Item</h2>
                 <div class="sidebar_section_content">
-
                     <form action="#" method="get">
                         <input type="text" value="Enter a keyword..." name="q" size="10" id="searchfield" title="searchfield" onfocus="clearText(this)" onblur="clearText(this)" />
                         <input type="submit" name="Search" value="Search" alt="Search" id="searchbutton" title="Search" />
                     </form>
-
                     <div class="cleaner"></div>
                 </div>
-
             </div>
-
             <div class="sidebar_section">
 
-                <h2>Categories</h2>
-              
-                <div class="sidebar_section_content">
-                    @Html.Action("Topic", "Home");
-                    @*<ul class="categories_list">
-            <li><a href="#">Lorem ipsum dolor</a></li>
-            <li><a href="#">Phasellus eget lorem</a></li>
-            <li><a href="#">Sed sit amet sem</a></li>
-            <li><a href="#">Cras eget est vel</a></li>
-            <li><a href="#">Quisque in ligula</a></li>
-            <li><a href="#">Donec a massa dui</a></li>
-            <li><a href="#">Aenean facilisis</a></li>
-            <li><a href="#">Etiam vitae consequat</a></li>
-            <li><a href="#">Aliquam sollicitudin</a></li>
-            <li><a href="#">Nunc fermentum</a></li>
-            <li><a href="#">Quisque in ligula</a></li>
-            <li><a href="#">Donec a massa dui</a></li>
-            <li><a href="#">Aenean facilisis</a></li>
-            <li><a href="#">Etiam vitae consequat</a></li>
-            <li><a href="#">Aliquam sollicitudin</a></li>
-            <li><a href="#">Nunc fermentum</a></li>
-        </ul>*@
-                </div>
-                <div class="sidebar_section_content">
-                    @Html.Action("NhaXuatBan", "Home");
-                </div>
+                <h2>Chủ đề sách</h2>
 
+                <div class="sidebar_section_content">
+                    @Html.Action("Topic", "BookStore")
+                </div>
+            </div>
+            <div class="sidebar_section">
+
+                <h2>Nhà xuất bản</h2>
+                <div class="sidebar_section_content">
+                    @Html.Action("NhaXuatBan", "BookStore");
+                </div>
+                
             </div>
 
         </div> <!-- end of templatemo_slider -->
 
         <div id="templatemo_content">
-
             <div class="content_section">
 
                 <h2>Welcome to the Shoe Store</h2>
@@ -208,14 +197,12 @@
 
             <div class="content_section">
 
-                <h2>New Products</h2>
-
-                <div class="product_box margin_r40">
+          
+              
 
                     @RenderBody();
 
-                </div>
-
+               
                 <div class="cleaner"></div>
 
             </div>
