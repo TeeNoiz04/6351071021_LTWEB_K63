@@ -79,16 +79,18 @@ namespace MvcBookStore.Controllers
                 {
                     db.KHACHHANGs.Add(kh);
                     db.SaveChanges();
+                    return RedirectToAction("Dangnhap");
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine("Error: " + ex.Message); // Hiển thị lỗi ra console
                     ViewBag.Error = "Có lỗi xảy ra: " + ex.Message; // Hoặc hiển thị trên giao diện
-                    return RedirectToAction("Dangnhap");
+                   
                 }
             }
-
+            ViewData["Loi8"] = "Email tồn tại hoặc là tài khoản tồn tại";
             return this.DangKy();
+
         }
 
        
