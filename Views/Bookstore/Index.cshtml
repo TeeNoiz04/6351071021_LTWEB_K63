@@ -1,36 +1,78 @@
 ﻿
+@using MvcBookStore.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<SACH>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
-<h2>5 Cuốn sách mới nhất</h2>
+<h2 style="text-align: center; color: red">6 Cuốn sách mới nhất</h2>
 
 
-@foreach (var latestBooks in Model)
+@*@foreach (var latestBooks in Model)
+    {
+        <div class="product_box margin_r40">
+            <div class="image_wrapper">
+                <a href="@Url.Action("Details", "BookStore", new { id = latestBooks.Masach })" target="_parent">
+                    <img alt="@latestBooks.Tensach" src="~/images/@latestBooks.Anhbia" width="200" />
+                </a>
+            </div>
+            <h3>@latestBooks.Tensach</h3>
+            <p class="price">Viewer: 15</p>
+        </div>
+
+        <div class="product_box">
+
+            <div class="image_wrapper">
+                <a href="@Url.Action("Details", "BookStore", new { id = latestBooks.Masach })" target="_parent">
+                    <img alt="@latestBooks.Tensach" src="~/images/@latestBooks.Anhbia" width="200" />
+                </a>
+            </div>
+            <h3>@latestBooks.Tensach</h3>
+            <p class="price">Viewer: 15</p>
+
+        </div>
+
+    }*@
+@for (int i = 0; i < Model.Count; i += 2)
 {
-    <div class="product_box margin_r40">
-        <div class="image_wrapper">
-            <a href="@Url.Action("Details", "BookStore", new { id = latestBooks.Masach })" target="_parent">
-                <img alt="@latestBooks.Tensach" src="~/images/@latestBooks.Anhbia" width="200" />
-            </a>
+    <div class="product_row">
+        <!-- Sản phẩm đầu tiên -->
+        <div class="product_box margin_r40">
+            <div class="image_wrapper">
+                <a href="@Url.Action("Details", "BookStore", new { id = Model[i].Masach })" target="_parent">
+                    <img alt="@Model[i].Tensach" src="~/images/@Model[i].Anhbia" width="200" />
+                </a>
+            </div>
+            <h3>@Model[i].Tensach</h3>
+            <p class="price">Viewer: 15</p>
         </div>
-        <h3>@latestBooks.Tensach</h3>
-        <p class="price">Viewer: 15</p>
+
+        <!-- Sản phẩm thứ hai (nếu có) -->
+        @if (i + 1 < Model.Count)
+        {
+            <div class="product_box">
+                <div class="image_wrapper">
+                    <a href="@Url.Action("Details", "BookStore", new { id = Model[i + 1].Masach })" target="_parent">
+                        <img alt="@Model[i + 1].Tensach" src="~/images/@Model[i + 1].Anhbia" width="200" />
+                    </a>
+                </div>
+                <h3>@Model[i + 1].Tensach</h3>
+                <p class="price">Viewer: 15</p>
+            </div>
+        }
     </div>
-
-    @*<div class="product_box">
-
-        <div class="image_wrapper">
-            <a href="@Url.Action("Details", "BookStore", new { id = latestBooks.Masach })" target="_parent">
-                <img alt="@latestBooks.Tensach" src="~/images/@latestBooks.Anhbia" width="200" />
-            </a>
-        </div>
-        <h3>@latestBooks.Tensach</h3>
-        <p class="price">Viewer: 15</p>
-
-    </div>*@
-
 }
 
+Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/ @Model.PageCount
 
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new {page = page}))
+</div>
+<style>
+    .MenuTrang li{
+        display: inline;
+        margin-left: 20px;
+    }
+</style>

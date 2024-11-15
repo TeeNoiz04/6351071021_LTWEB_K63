@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta name="keywords" content="Shoe Store, Free Template, templatemo.com" />
+    <meta name="description" content="Shoe Store - Free Website Template provided by templatemo.com" />
+    <link href="~/Content/templatemo_style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/styles.css" />
+
+
+
+
+
+    <script language="javascript" type="text/javascript">
+        function clearText(field) {
+            if (field.defaultValue == field.value) field.value = '';
+            else if (field.value == '') field.value = field.defaultValue;
+        }
+    </script>
+
+    <script language="javascript" type="text/javascript" src="~/Scripts/mootools-1.2.1-core.js"></script>
+    <script language="javascript" type="text/javascript" src="~/Scripts/mootools-1.2-more.js"></script>
+    <script language="javascript" type="text/javascript" src="~/Scripts/slideitmoo-1.1.js"></script>
+    <script language="javascript" type="text/javascript">
+        window.addEvents({
+            'domready': function () {
+                /* thumbnails example , div containers */
+                new SlideItMoo({
+                    overallContainer: 'SlideItMoo_outer',
+                    elementScrolled: 'SlideItMoo_inner',
+                    thumbsContainer: 'SlideItMoo_items',
+                    itemsVisible: 6,
+                    elemsSlide: 2,
+                    duration: 160,
+                    itemsSelector: '.SlideItMoo_element',
+                    itemWidth: 140,
+                    showControls: 1
+                });
+            },
+
+        });
+    </script>
+    <script src="~/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script>tinymce.init({ selector: 'textarea' });</script>
+    @*<script>
+        tinymce.init({
+            selector: 'texarea[name="Mota"]',
+            menubar: true,
+            plugins: 'lists link image charmap print preview hr anchor pagebreak',
+            toolbar_mode: 'floating',
+            toolbar: 'undo redo | formatselect | bold italic backcolor | ' +
+                'alignleft aligncenter alignright alignjustify | ' +
+                'bullist numlist outdent indent | removeformat | help',
+            // Đảm bảo không có cấu hình nào như "hidden" hoặc "visibility: hidden"
+            setup: function (editor) {
+                editor.on('init', function () {
+                    document.getElementById("mce_0").style.visibility = "visible";
+                });
+            }
+        });
+    </script>*@
+
+</head>
+<body>
+    <div id="templatemo_menu_wrapper">
+
+        <div id="templatemo_menu">
+
+            <ul>
+                <li><a href="@Url.Action("Index", "Admin")" class="current">Trang chủ</a></li>
+
+                <li>
+                    <a href="@Url.Action("Sanoham", "Admin")" target="_parent">Quản lí chủ đề</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Nhaxuatban", "Admin")" target="_parent">Quản lí NXB</a>
+                </li>
+                <li>
+
+                    <a href="@Url.Action("Sach", "Admin")" target="_parent">Quản lí sách</a>
+
+                </li>
+                <li>
+
+                    <a href="@Url.Action("ThongKe", "Admin")" target="_parent">Thống kê sách</a>
+
+                </li>
+
+            </ul>
+
+        </div> <!-- end of templatemo_menu -->
+
+    </div> <!-- end of templatemo_menu_wrapper -->
+
+   
+
+    <div id="templatemo_content_wrapper">
+       
+
+        <div >
+           
+
+            <div class="content_section">
+
+
+
+
+                @RenderBody();
+
+
+                <div class="cleaner"></div>
+
+            </div>
+
+        </div> <!-- end of templatemo_content -->
+
+        <div class="cleaner"></div>
+
+    </div> <!-- end of templatemo_content_wrapper -->
+
+    <div id="templatemo_footer">
+
+        <ul class="footer_menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li class="last_menu"><a href="#">Contact</a></li>
+        </ul>
+
+        Copyright © 2048 <a href="#">Your Company Name</a> |
+        <a href="http://www.iwebsitetemplate.com" target="_parent">Website Templates</a> by <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a>
+    </div>
+    <!-- end of footer -->
+
+</body>
+</html>

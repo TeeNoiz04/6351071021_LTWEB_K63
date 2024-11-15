@@ -4,21 +4,29 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MvcBookStore.Models;
+
+using PagedList;
+using PagedList.Mvc;
 namespace MvcBookStore.Views.Bookstore
 {
     public class BookStoreController : Controller
     {
         // GET: BookStore
         QLBANSACHEntities data = new QLBANSACHEntities();
-        public ActionResult Index()
-        {
-            // Lấy 5 quyển sách mới nhất
-            var latestBooks = data.SACHes
-                                  .OrderByDescending(s => s.Ngaycapnhat)
-                                  .Take(5)
-                                  .ToList();
 
-            return View(latestBooks);
+        private List<SACH> getSachMoi(int i)
+        {
+            return data.SACHes.OrderByDescending(s => s.Ngaycapnhat)
+                                  .Take(i)
+                                  .ToList();
+        }
+        public ActionResult Index(int ? page)
+        {
+            int pageSize = 6;
+            int pageNum = page ?? 1;
+            // Lấy 5 quyển sách mới nhất
+            var latestBooks = getSachMoi(15);
+                return View(latestBooks.ToPagedList(pageNum,pageSize));
      
         }
         public ActionResult Take() {

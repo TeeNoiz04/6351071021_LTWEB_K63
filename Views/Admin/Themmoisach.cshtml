@@ -1,0 +1,219 @@
+﻿@model MvcBookStore.Models.SACH
+
+@{
+    ViewBag.Title = "Themmoisach";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Themmoisach</h2>
+
+@using (Html.BeginForm("Themmoisach", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>SACH</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Masach, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Masach, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Masach, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tensach, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Tensach, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tensach, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Giaban, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Giaban, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Giaban, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Mota, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div id="mota" name="Mota" class="form-control" contenteditable="true" style="height: 100px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
+                Bạn có thể thêm văn bản mẫu bên trong nếu muốn
+            </div>
+            <small id="motaHelp" class="form-text text-muted">Vui lòng nhập mô tả chi tiết cho sách này. (Tối đa 255 ký tự)</small>
+            <input type="hidden" id="hiddenMota" name="Mota" />
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Anhbia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="fileUpload" />
+                @Html.ValidationMessageFor(model => model.Anhbia, "", new { @class = "text-danger" })
+                @ViewBag.Thongbao
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ngaycapnhat, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Ngaycapnhat, new { htmlAttributes = new { @class = "form-control" } })*@
+                <input type="date" name="Ngaycapnhat" />
+                @Html.ValidationMessageFor(model => model.Ngaycapnhat, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Soluongton, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Soluongton, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Soluongton, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaCD, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+              
+                @Html.ValidationMessageFor(model => model.MaCD, "", new { @class = "text-danger" })
+               
+                    @Html.DropDownList("MaCD")
+             
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaNXB, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+             
+                @Html.ValidationMessageFor(model => model.MaNXB, "", new { @class = "text-danger" })
+                
+                    @Html.DropDownList("MaNXB")
+              
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Thêm mới" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Về trang quản lí sách", "Sach")
+</div>
+<style>
+    /* Căn chỉnh tiêu đề và khoảng cách giữa các nhóm form */
+    .form-horizontal {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        .form-horizontal h4 {
+            text-align: center;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+    .control-label {
+        font-weight: bold;
+        color: #555;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-control {
+        width: 100%;
+    }
+
+    .text-danger {
+        color: red;
+        font-size: 0.9em;
+        margin-top: 5px;
+    }
+
+    /* Căn chỉnh các nút */
+    .btn {
+        background-color: #5cb85c;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn:hover {
+            background-color: #4cae4c;
+        }
+
+    .btn-default {
+        background-color: #337ab7;
+        color: white;
+    }
+
+        .btn-default:hover {
+            background-color: #286090;
+        }
+
+    .col-md-offset-2 {
+        margin-left: 16.666667%;
+    }
+
+    /* Đường viền và độ rộng dropdown list */
+    select.form-control, .form-control {
+        border: 1px solid #ccc;
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    /* Căn chỉnh lại DropdownList */
+    .dropdown-list-container .form-control {
+        max-width: 100%;
+    }
+
+    /* Liên kết quay lại */
+    a {
+        color: #337ab7;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: #23527c;
+            text-decoration: underline;
+        }
+
+</style>
+<script>
+    // Giới hạn số ký tự
+    document.getElementById('mota').addEventListener('input', function () {
+        if (this.innerText.length > 255) {
+            this.innerText = this.innerText.substring(0, 255); // Giới hạn 255 ký tự
+            alert("Giới hạn tối đa 255 ký tự");
+        }
+    });
+
+    // Cập nhật giá trị của input hidden khi form submit
+    document.querySelector('form').addEventListener('submit', function (e) {
+        // Lấy nội dung từ div có contenteditable
+        var description = document.getElementById("mota").innerText;
+
+        // Đặt giá trị cho input hidden
+        document.getElementById("hiddenMota").value = description;
+    });
+
+</script>

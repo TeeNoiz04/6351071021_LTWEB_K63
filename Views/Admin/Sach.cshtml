@@ -1,0 +1,93 @@
+﻿
+@using MvcBookStore.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<MvcBookStore.Models.SACH>
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text>...</text>
+    }
+}
+
+@{
+    ViewBag.Title = "Sach";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Sach</h2>
+
+<p>
+    @Html.ActionLink("Thêm sách nè", "Themmoisach")
+</p>
+<table class="table" style="border: 1px solid black; border-collapse: collapse;">
+    
+    <tr>
+        <th style="width: 200px; border: 1px solid black;">Tên sách</th>
+        <th style="width: 100px; border: 1px solid black;">Giá bán</th>
+        <th style="width: 300px; border: 1px solid black;">Mô tả</th>
+        <th style="width: 120px; border: 1px solid black;">Ảnh bìa</th>
+        <th style="width: 150px; border: 1px solid black;">Ngày cập nhật</th>
+        <th style="width: 120px; border: 1px solid black;">SL.Tồn</th>
+        <th style="width: 120px; border: 1px solid black;">Tên chủ đề</th>
+        <th style="width: 100px; border: 1px solid black;">Tên NXB</th>
+        <th style="width: 200px; border: 1px solid black;"></th>
+    </tr>
+
+  
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td  style="border: 1px solid black;">
+                @Html.DisplayFor(modelItem => item.Tensach)
+            </td>
+            <td style="border: 1px solid black;">
+                @Html.DisplayFor(modelItem => item.Giaban)
+            </td>
+            <td style="border: 1px solid black;">
+                @*@Html.DisplayFor(modelItem => item.Mota)*@
+                @Truncate(item.Mota, 15)
+            </td>
+            <td style="border: 1px solid black;">
+                @*   @Html.DisplayFor(modelItem => item.Anhbia)*@
+                <img src="@Url.Content("~/images/" +item.Anhbia )" />
+            </td>
+            <td style="border: 1px solid black;">
+                @Html.DisplayFor(modelItem => item.Ngaycapnhat)
+            </td>
+            <td style="border: 1px solid black;">
+                @Html.DisplayFor(modelItem => item.Soluongton)
+            </td>
+            <td style="border: 1px solid black;">
+                @Html.DisplayFor(modelItem => item.MaCD)
+            </td>
+            <td style="border: 1px solid black;">
+                @Html.DisplayFor(modelItem => item.MaNXB)
+            </td>
+            <td style="border: 1px solid black;">
+                @Html.ActionLink("Sửa", "Suasach", new { id = item.Masach }) |
+                @Html.ActionLink("Chi tiết", "Chitietsach", new { id = item.Masach }) |
+                @Html.ActionLink("Xóa", "Xoasach", new { id = item.Masach })
+            </td>
+        </tr>
+    }
+
+</table>
+@* Tạo liên kết các trang *@
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Sach", new { page = page }))
+</div>
+
+<style>
+    .MenuTrang li {
+        display: inline;
+        margin-left: 20px;
+    }
+</style>
